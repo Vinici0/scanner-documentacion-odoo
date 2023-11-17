@@ -1,0 +1,67 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="view_custom_crm_visit_from">
+            <field name="name">view_custom_crn_visit_from</field>
+            <field name="model">custom_crm.visit</field>
+            <field name="arch" type="xml">
+                <!-- Formulario -->
+                <form string="Visita">
+                    <!-- Sheet es un contenedor de grupos -->
+                    <sheet>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name="customer"/>
+                                <field name="date"/>
+                                <field name="type"/>
+                            </group>
+                            <group name="group_right">
+                                <field name="name"/>
+                                <field name="done"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--  Vista tree -->
+        <record id="view_custom_crm_visit_tree" model="ir.ui.view">
+            <field name="name">view_custom_crm_visit_tree</field>
+            <field name="model">custom_crm.visit</field>
+            <field name="arch" type="xml">
+                <!-- Columnas que quiero que me muestre -->
+                <tree string="Visit">
+                    <field name="name"/>
+                    <field name="customer"/>
+                    <field name="date"/>
+                    <field name="type"/>
+                    <field name="done"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_custom_crm_visit_view" model="ir.actions.act_window">
+            <field name="name">action_custom_crm_visit_view</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">custom_crm.visit</field>
+            <field name="view_mode">tree,form</field>
+            <!-- help -->
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Visitas
+                </p>
+                <p>
+                    Click para crear una nueva visita
+                </p>
+            </field>
+        </record>
+
+        <!-- Para acceder a la vista tree en concreto -->
+        <menuitem id="menu_custom_crm_root" name="Cutom CRM" sequence="10"/>
+        <menuitem id="menu_custom_crm_categ" name="Operaciones" parent="menu_custom_crm_root" sequence="0"/>
+        <menuitem id="menu_custom_crm_visit" name="Visitas" parent="menu_custom_crm_categ" sequence="0"
+                  action="action_custom_crm_visit"/>
+
+    </data>
+</odoo>
